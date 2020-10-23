@@ -30,6 +30,9 @@
 		<script src="../../framework/jquery.mCustomScrollbar.min.js"></script>
 		<script src="../../framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
 		<!-- 公共样式 结束 -->
+		<script src="../../framework/studentList.js"></script>
+	<!--	学生列表js	-->
+
 
 	</head>
 
@@ -39,7 +42,7 @@
 				<form class="layui-form" action="">
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
-							<input type="text" name="name" required lay-verify="required" placeholder="输入分管名称" autocomplete="off" class="layui-input">
+							<input type="text" name="studentName" placeholder="输入考生名字" autocomplete="off" class="layui-input">
 						</div>
 						<button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
 					</div>
@@ -51,36 +54,66 @@
 				
 						//监听提交
 						form.on('submit(formDemo)', function(data) {
-							layer.msg(JSON.stringify(data.field));
+
+							queryStudentList(data.field.studentName);
 							return false;
 						});
 					});
 				</script>
 			</div>
 			
-			<table class="layui-table">
-				<thead>
+			<table id="studentList" class="layui-table">
+				<!--<thead>
 					<tr>
-						<th>分管名称</th>
-						<th>分管编码</th>
-						<th>所属区域</th>
-						<th>负责人</th>
-						<th>登录名</th>
-						<th>联系方式</th>
-						<th>传真</th>
-						<th>邮箱</th>
-						<th>操作</th>
+						<th>考生姓名</th>
+						<th>性别</th>
+&lt;!&ndash;						<th>生日</th>&ndash;&gt;
+&lt;!&ndash;						<th>联系电话</th>&ndash;&gt;
+&lt;!&ndash;						<th>学历</th>&ndash;&gt;
+&lt;!&ndash;						<th>民族</th>&ndash;&gt;
+&lt;!&ndash;						<th>是否建档</th>&ndash;&gt;
+&lt;!&ndash;						<th>考试意向</th>&ndash;&gt;
+&lt;!&ndash;						<th>用户状态</th>&ndash;&gt;
+&lt;!&ndash;						<th>毕业院校</th>&ndash;&gt;
+&lt;!&ndash;						<th>专业</th>&ndash;&gt;
+&lt;!&ndash;						<th>住址</th>&ndash;&gt;
+&lt;!&ndash;						<th>个人简介</th>&ndash;&gt;
+&lt;!&ndash;						<th>操作</th>&ndash;&gt;
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>龙九山</td>
-						<td>DLS201802281450280741</td>
-						<td>无锡市</td>
-						<td>龙九山</td>
+						<td>翟博文</td>
+						<td>男</td>
+&lt;!&ndash;						<td>19960312</td>&ndash;&gt;
+&lt;!&ndash;						<td>234523423423</td>&ndash;&gt;
+&lt;!&ndash;						<td>龙九山</td>&ndash;&gt;
+&lt;!&ndash;						<td>18600001111</td>&ndash;&gt;
+&lt;!&ndash;						<td>028-6666666</td>&ndash;&gt;
+&lt;!&ndash;						<td>123456789@qq.com</td>&ndash;&gt;
+&lt;!&ndash;						<td>123456789@qq.com</td>&ndash;&gt;
+&lt;!&ndash;						<td>123456789@qq.com</td>&ndash;&gt;
+&lt;!&ndash;						<td>123456789@qq.com</td>&ndash;&gt;
+&lt;!&ndash;						<td>123456789@qq.com</td>&ndash;&gt;
+&lt;!&ndash;						<td>123456789@qq.com</td>&ndash;&gt;
+&lt;!&ndash;						<td>&ndash;&gt;
+&lt;!&ndash;							<button class="layui-btn layui-btn-xs">修改</button>&ndash;&gt;
+&lt;!&ndash;							<button class="layui-btn layui-btn-xs">基本信息</button>&ndash;&gt;
+&lt;!&ndash;						</td>&ndash;&gt;
+					</tr>
+					&lt;!&ndash;<tr>
+						<td>翟博文</td>
+						<td>男</td>
+						<td>19960312</td>
+						<td>234523423423</td>
 						<td>龙九山</td>
 						<td>18600001111</td>
 						<td>028-6666666</td>
+						<td>123456789@qq.com</td>
+						<td>123456789@qq.com</td>
+						<td>123456789@qq.com</td>
+						<td>123456789@qq.com</td>
+						<td>123456789@qq.com</td>
 						<td>123456789@qq.com</td>
 						<td>
 							<button class="layui-btn layui-btn-xs">修改</button>
@@ -88,54 +121,35 @@
 						</td>
 					</tr>
 					<tr>
-						<td>龙九山</td>
-						<td>DLS201802281450280741</td>
-						<td>无锡市</td>
-						<td>龙九山</td>
+						<td>翟博文</td>
+						<td>男</td>
+						<td>19960312</td>
+						<td>234523423423</td>
 						<td>龙九山</td>
 						<td>18600001111</td>
 						<td>028-6666666</td>
+						<td>123456789@qq.com</td>
+						<td>123456789@qq.com</td>
+						<td>123456789@qq.com</td>
+						<td>123456789@qq.com</td>
+						<td>123456789@qq.com</td>
 						<td>123456789@qq.com</td>
 						<td>
 							<button class="layui-btn layui-btn-xs">修改</button>
 							<button class="layui-btn layui-btn-xs">基本信息</button>
 						</td>
-					</tr>
-					<tr>
-						<td>龙九山</td>
-						<td>DLS201802281450280741</td>
-						<td>无锡市</td>
-						<td>龙九山</td>
-						<td>龙九山</td>
-						<td>18600001111</td>
-						<td>028-6666666</td>
-						<td>123456789@qq.com</td>
-						<td>
-							<button class="layui-btn layui-btn-xs">修改</button>
-							<button class="layui-btn layui-btn-xs">基本信息</button>
-						</td>
-					</tr>
-				</tbody>
+					</tr>&ndash;&gt;
+				</tbody>-->
+
+				<script type="text/html" id="barDemo">
+					<button class="layui-btn layui-btn-xs" onclick="getDetail()">查看详情</button>
+<!--					<button class="layui-btn layui-btn-xs" onclick="updateBut()">修改</button>-->
+				</script>
 			</table>
+
+
 			
-			<!-- layUI 分页模块 -->
-			<div id="pages"></div>
-			<script>
-				layui.use(['laypage', 'layer'], function() {
-					var laypage = layui.laypage,
-						layer = layui.layer;
-				
-					//总页数大于页码总数
-					laypage.render({
-					    elem: 'pages'
-					    ,count: 100
-					    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
-					    ,jump: function(obj){
-					      console.log(obj)
-					    }
-					});
-				});
-			</script>
+
 		</div>
 	</body>
 
